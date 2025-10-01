@@ -1,0 +1,349 @@
+    
+    
+    def execute(executionList,operand) 
+  
+        mnemonic = executionList[0]
+        
+        jump = 0
+        
+        #print "\nmnemonic = >",mnemonic,"<"
+        #
+        #print "\nexecutionList = ",executionList
+        #
+        #print "\noperand = ",operand
+        
+        
+        
+        
+        case mnemonic
+            
+            when "nop"      then  jump =  doNOP(executionList,operand)      ;
+            when "rst"      then  jump =  doRST(executionList,operand)      ;
+            when "brk"      then  jump =  doBRK(executionList,operand)      ;
+            when "call"     then  jump =  doCALL(executionList,operand)      ;
+            when "ret"      then  jump =  doRET(executionList,operand)      ;
+            when "reti"     then  jump =  doRETI(executionList,operand)     ;
+            when "beqz"     then  jump =  doBEQZ(executionList,operand)     ;
+            when "bneqz"    then  jump =  doBNEQZ(executionList,operand)    ;
+            when "bpos"     then  jump =  doBPOS(executionList,operand)     ;
+            when "bneg"     then  jump =  doBNEG(executionList,operand)     ;
+            when "bxeqz"    then  jump =  doBXEQZ(executionList,operand)    ;
+            when "bxneqz"   then  jump =  doBXNEQZ(executionList,operand)   ;
+            when "dxsz"     then  jump =  doDXSZ(executionList,operand) ;
+            when "jmp#"     then  jump =  doJMPi(executionList,operand) ;
+            when "jmp"      then  jump =  doJMP(executionList,operand) ;
+            when "pusha"    then  jump =  doPUSHA(executionList,operand) ;
+            when "pushb"    then  jump =  doPUSHB(executionList,operand) ;
+            when "pushx"    then  jump =  doPUSHX(executionList,operand) ;
+            when "pushf"    then  jump =  doPUSHF(executionList,operand) ;
+            when "pushpc"   then  jump =  doPUSHPC(executionList,operand) ;
+            when "popa"     then  jump =  doPOPA(executionList,operand) ;
+            when "popb"     then  jump =  doPOPB(executionList,operand) ;
+            when "popx"     then  jump =  doPOPX(executionList,operand) ;
+            when "popf"     then  jump =  doPOPF(executionList,operand) ;
+            when "poppc"    then  jump =  doPOPPC(executionList,operand) ;
+            when "lda#"     then  jump =  doLDAi(executionList,operand) ;
+            when "lda"      then  jump =  doLDA(executionList,operand) ;
+            when "ldaix"    then  jump =  doLDAIX(executionList,operand) ;
+            when "ldai"     then  jump =  doLDAI(executionList,operand) ;
+            when "ldb#"     then  jump =  doLDBi(executionList,operand) ;
+            when "ldb"      then  jump =  doLDB(executionList,operand) ;
+            when "ldbix"    then  jump =  doLDBIX(executionList,operand) ;
+            when "ldx#"     then  jump =  doLDXi(executionList,operand) ;
+            when "ldx"      then  jump =  doLDX(executionList,operand) ;
+            when "sta"      then  jump =  doSTA(executionList,operand) ;
+            when "staix"    then  jump =  doSTAIX(executionList,operand) ;
+            when "staii"    then  jump =  doSTAII(executionList,operand) ;
+            when "stb"      then  jump =  doSTB(executionList,operand) ;
+            when "stx"      then  jump =  doSTX(executionList,operand) ;
+            when "inca"     then  jump =  doINCA(executionList,operand) ;
+            when "incb"     then  jump =  doINCB(executionList,operand) ;
+            when "incx"     then  jump =  doINCX(executionList,operand) ;
+            when "deca"     then  jump =  doDECA(executionList,operand) ;
+            when "decb"     then  jump =  doDECB(executionList,operand) ;
+            when "decx"     then  jump =  doDECX(executionList,operand) ;
+            when "tab"      then  jump =  doTAB(executionList,operand) ;
+            when "tax"      then  jump =  doTAX(executionList,operand) ;
+            when "tba"      then  jump =  doTBA(executionList,operand) ;
+            when "tbx"      then  jump =  doTBX(executionList,operand) ;
+            when "txa"      then  jump =  doTXA(executionList,operand) ;
+            when "txb"      then  jump =  doTXB(executionList,operand) ;
+            when "and"      then  jump =  doAND(executionList,operand) ;
+            when "or"       then  jump =  doOR(executionList,operand) ;
+            when "not"      then  jump =  doNOT(executionList,operand) ;
+            when "xor"      then  jump =  doXOR(executionList,operand) ;
+            when "lsl"      then  jump =  doLSL(executionList,operand) ;
+            when "lsr"      then  jump =  doLSR(executionList,operand) ;
+            when "add"      then  jump =  doADD(executionList,operand) ;
+            when "sub"      then  jump =  doSUB(executionList,operand) ;
+            when "in"       then  jump =  doIN(executionList,operand) ;
+            when "out"      then  jump =  doOUT(executionList,operand) ;
+           
+            else print "\nERROR: mnemonic >",mnemonic,"< not identified.\n\n" ; Process.exit(0) 
+            
+            
+        end # of case
+        
+        return jump
+        
+    end
+    
+   
+        
+        
+        
+        
+            
+    def doNOP(executionList,operand)    ;        jump = 0 ; return jump ; end 
+    def doRST(executionList,operand)    ; setPC(0)                          ;       jump = -999999  ; return jump ; end 
+    def doBRK(executionList,operand)    ;        jump = 0 ; return jump ; end 
+     
+    def doCALL(executionList,operand)   ; $stack.push(getPC) ; setSP($stack.size); setPC(operand) ;      jump = operand ; return jump ; end 
+     
+     
+     
+    def doRET(executionList,operand)
+        
+        #print "\ndoing doRET"
+
+        jump = $stack.pop + 3
+        
+        #print "\nreturn address should be ",jump.to_hex(4)
+        
+        setSP($stack.size)
+
+        setPC(jump)
+
+        return jump
+        
+    end 
+     
+     
+     
+     
+     
+    def doRETI(executionList,operand)   ;        jump = 0 ; return jump ; end 
+     
+     
+    def doBEQZ(executionList,operand)   
+
+        if ( getA == 0 )   
+
+            jump = operand
+            
+            setPC(getPC + operand)
+            
+        else 
+            
+            jump = 0 
+            
+        end
+        
+        return jump
+        
+    end 
+    
+    
+       
+    def doBNEQZ(executionList,operand)   
+
+        if ( getA != 0 )   
+
+            jump = operand
+            
+            setPC(getPC + operand)
+            
+        else 
+            
+            jump = 0 
+            
+        end
+        
+        return jump
+        
+    end 
+    
+    
+    def doBPOS(executionList,operand)   
+
+        if ( ( getA & 128 ) == 0 )   
+
+            jump = operand
+            
+            setPC(getPC + operand)
+            
+        else 
+            
+            jump = 0 
+            
+        end
+        
+        return jump
+        
+    end  
+    
+    
+    def doBNEG(executionList,operand)   
+
+        if ( ( getA & 128 ) == 128 )   
+
+            jump = operand
+            
+            setPC(getPC + operand)
+            
+        else 
+            
+            jump = 0 
+            
+        end
+        
+        return jump
+        
+    end  
+    
+    
+    def doBXEQZ(executionList,operand)   
+
+        if ( getX == 0 )   
+
+            jump = operand
+            
+            setPC(getPC + operand)
+            
+        else 
+            
+            jump = 0 
+            
+        end
+        
+        return jump
+        
+    end 
+    
+     
+        
+    def doBXNEQZ(executionList,operand)   
+
+        if ( getX != 0 )   
+
+            jump = operand
+            
+            setPC(getPC + operand)
+            
+        else 
+            
+            jump = 0 
+            
+        end
+        
+        return jump
+        
+    end 
+    
+
+    def doDXSZ(executionList,operand)
+        
+        setX( getX - 1 )
+        
+        if ( getX == 0 ) 
+            
+            jump = 3
+            
+        else
+        
+            jump = 0
+        
+        end
+    
+    
+        #print "\ndxsz jump = ",jump
+    
+        return jump 
+    
+    end 
+    
+    
+    
+    
+    def doJMPi(executionList,operand)        
+        
+        jump = operand 
+        
+        #print "\noperand = ",operand.toUHex2
+        
+        sign = ( operand & 128 ) >> 7
+        
+        #print "\nsign is ",sign
+        
+        magnitude = 128 - ( operand & 127 )
+        
+        #print "\nmagnitude = ",magnitude
+        
+        jump = magnitude
+        
+        if ( sign == 1 )
+            
+            jump = jump * -1
+            
+        end
+        
+        #print "\njump = ",jump
+        
+        return jump 
+        
+    end 
+    
+    
+    
+    
+    
+    
+    def doJMP(executionList,operand)    ;        jump = operand ; return jump ; end 
+    
+    def doPUSHA(executionList,operand)  ;        jump = 0 ; return jump ; end 
+    def doPUSHB(executionList,operand)  ;        jump = 0 ; return jump ; end 
+    def doPUSHX(executionList,operand)  ;        jump = 0 ; return jump ; end 
+    def doPUSHF(executionList,operand)  ;        jump = 0 ; return jump ; end 
+    def doPUSHPC(executionList,operand) ;        jump = 0 ; return jump ; end 
+    def doPOPA(executionList,operand)   ;        jump = 0 ; return jump ; end  
+    def doPOPB(executionList,operand)   ;        jump = 0 ; return jump ; end  
+    def doPOPX(executionList,operand)   ;        jump = 0 ; return jump ; end  
+    def doPOPF(executionList,operand)   ;        jump = 0 ; return jump ; end  
+    def doPOPPC(executionList,operand)  ;        jump = 0 ; return jump ; end 
+    def doLDAi(executionList,operand)   ; setA(operand)                     ;       jump = 0 ; return jump ; end  
+    def doLDA(executionList,operand)    ; setA($m.read(operand) )           ;       jump = 0 ; return jump ; end 
+    def doLDAIX(executionList,operand)  ; setA($m.read(operand + getX ) )   ;       jump = 0 ; return jump ; end 
+    def doLDAI(executionList,operand)   ; msb = $m.read(operand) ; lsb = $m.read(operand +1) ; address = ( msb * 256 ) + lsb ;  setA($m.read(address)) ;  jump = 0 ; return jump ; end 
+    def doLDBi(executionList,operand)   ; setB(operand)                     ;       jump = 0 ; return jump ; end 
+    def doLDB(executionList,operand)    ; setB($m.read(operand) )           ;       jump = 0 ; return jump ; end 
+    def doLDBIX(executionList,operand)  ; setB($m.read(operand + getX ) )   ;       jump = 0 ; return jump ; end  
+    def doLDXi(executionList,operand)   ; setX(operand)                     ;       jump = 0 ; return jump ; end  
+    def doLDX(executionList,operand)    ; setX($m.read(operand) );          jump = 0 ; return jump ; end 
+    def doSTA(executionList,operand)    ; $m.write(operand,getA)            ;       jump = 0 ; return jump ; end 
+    def doSTAIX(executionList,operand)  ; $m.write( ( operand + getX ),getA);       jump = 0 ; return jump ; end 
+    def doSTAII(executionList,operand)  ; msb = $m.read(operand) ; lsb = $m.read(operand +1) ; address = ( msb * 256 ) + lsb ; $m.write(address,getA) ; jump = 0 ; return jump ; end 
+    def doSTB(executionList,operand)    ; $m.write(operand,getB)            ;       jump = 0 ; return jump ; end 
+    def doSTX(executionList,operand)    ; $m.write(operand,getX)            ;       jump = 0 ; return jump ; end 
+    def doINCA(executionList,operand)   ; setA(getA + 1 ) ;        jump = 0 ; return jump ; end 
+    def doINCB(executionList,operand)   ; setB(getB + 1 ) ;        jump = 0 ; return jump ; end 
+    def doINCX(executionList,operand)   ; setX(getX + 1 ) ;        jump = 0 ; return jump ; end 
+    def doDECA(executionList,operand)   ; setA(getA - 1 ) ;        jump = 0 ; return jump ; end 
+    def doDECB(executionList,operand)   ; setB(getB - 1 ) ;        jump = 0 ; return jump ; end 
+    def doDECX(executionList,operand)   ; setX(getX - 1 ) ;        jump = 0 ; return jump ; end 
+    def doTAB(executionList,operand)    ; setB(getA) ;             jump = 0 ; return jump ; end 
+    def doTAX(executionList,operand)    ; setX(getA) ;             jump = 0 ; return jump ; end 
+    def doTBA(executionList,operand)    ; setA(getB) ;             jump = 0 ; return jump ; end 
+    def doTBX(executionList,operand)    ; setX(getB) ;             jump = 0 ; return jump ; end 
+    def doTXA(executionList,operand)    ; setA(getX) ;             jump = 0 ; return jump ; end 
+    def doTXB(executionList,operand)    ; setB(getX) ;             jump = 0 ; return jump ; end 
+    def doAND(executionList,operand)    ; setA(getA & getB);       jump = 0 ; return jump ; end 
+    def doOR(executionList,operand)     ; setA(getA | getB);       jump = 0 ; return jump ; end 
+    def doNOT(executionList,operand)    ; setA( ~ getA );          jump = 0 ; return jump ; end 
+    def doXOR(executionList,operand)    ; setA(getA ^ getB);       jump = 0 ; return jump ; end 
+    def doLSL(executionList,operand)    ; setA(getA << operand ) ; jump = 0 ; return jump ; end 
+    def doLSR(executionList,operand)    ; setA(getA >> operand ) ; jump = 0 ; return jump ; end 
+    def doADD(executionList,operand)    ; setA(getA + getB);       jump = 0 ; return jump ; end 
+    def doSUB(executionList,operand)    ; setA(getA - getB);       jump = 0 ; return jump ; end 
+    def doIN (executionList,operand)    ; setA(getInput);          jump = 0 ; return jump ; end 
+    def doOUT(executionList,operand)    ; setOutput(getA) ;        jump = 0 ; return jump ; end 
+   

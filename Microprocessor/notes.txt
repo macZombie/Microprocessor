@@ -1,0 +1,6 @@
+ldyi 02
+ldxi 02
+decx
+bxneqz fc
+decy
+byneqz f7

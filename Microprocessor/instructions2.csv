@@ -1,0 +1,62 @@
+instruction,addressMode,extraFetches,index,opCode,description
+nop,0,0,0,0,no operation
+rst,0,0,1,1,reset
+brk,0,0,2,2,break / halt
+call,absolute,2,3,3,call subroutine at address
+ret ,0,0,4,4,return from subroutine
+reti,0,0,5,5,return from interrupt
+beqz,relative,1,6,6,branch if a == zero
+bneqz,relative,1,7,7,branch if a != zero
+bpos,relative,1,8,8,branch if a is >= 0
+bneg,relative,1,9,9,branch if a is negative
+bxeqz,relative,1,10,10,branch if x == 0
+bxneqz,relative,1,11,11,branch if x != 0
+byeqz,relative,1,12,12,branch if y == 0
+byneqz,relative,1,13,13,branch if y != 0
+dxsz,relative,0,14,14,decrement x and skip next instruction if x == 0
+jmpr,relative,1,15,15,unconditional relative jump
+jmpa,absolute,2,16,16,unconditional absolute jump
+pusha,0,0,17,17,push a on to stack
+pushx,0,0,18,18,push b on to stack
+pushy,0,0,19,19,push x on to stack
+pushf,0,0,20,20,push flags on to stack
+pushpc,0,0,21,21,push program counter on to stack
+popa,0,0,22,22,pop a from stack
+popx,0,0,23,23,pop b from stack
+popy,0,0,24,24,pop x from stack
+popf,0,0,25,25,pop flags from stack
+poppc,0,0,26,26,pop program counter from stack
+ldai,immediate,1,27,27,load a immediate
+lda,absolute,2,28,28,load a absolute
+ldaix ,indexed,2,29,29,load a ( address + x )
+ldaii ,indirect,2,30,30,load a indirectly from the pointer specified by address
+ldxi,immediate,1,31,31,load x immediate
+ldx,absolute,2,32,32,load x absolute
+ldyi,immediate,1,33,33,load y immediate
+ldy,absolute,2,34,34,load y absolute
+sta,absolute,2,35,35,store a absolute
+staix,indexed,2,36,36,store a indexed
+staii,indirect,2,37,37,store a indirect
+stx,absolute,2,38,38,store x absolute
+sty,absolute,2,39,39,store y absolute
+inca,0,0,40,40,increment a
+incx,0,0,41,41,increment x
+incy,0,0,42,42,increment y
+deca,0,0,43,43,decrement a
+decx,0,0,44,44,decrement x
+decy,0,0,45,45,decrement y
+tax,0,0,46,46,transfer a to x
+tay,0,0,47,47,transfer a to y
+txa,0,0,48,48,transfer x to a
+tya,0,0,49,49,transfer y to a
+txy,0,0,50,50,transfer x to y
+tyx,0,0,51,51,transfer y to x
+and,1,0,52,52,a = a and b
+or,1,0,53,53,a = a or b
+not,0,0,54,54,a = not a
+xor,1,0,55,55,a = a xor b
+lsl,immediate,1,56,56,a = a shifted left operand times
+lsr,immediate,1,57,57,a = a shifted right operand times
+add,1,0,58,58,a = a + b
+sub,1,0,59,59,a = a - b
+clc,0,0,60,60,clear carry flag

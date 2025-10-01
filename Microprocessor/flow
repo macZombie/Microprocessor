@@ -1,0 +1,4 @@
+clear 
+ruby buildDecoder.rb instructions2.csv
+
+

@@ -1,0 +1,50 @@
+# test.lst
+// test.asm
+         [0000]   00             | nop                      | NO OPERATION                                                     | 
+ADDRESS = 0001
+         [0001]   00             | nop                      | NO OPERATION                                                     | 
+         [0002]   00             | nop                      | NO OPERATION                                                     | 
+         [0003]   00             | nop                      | NO OPERATION                                                     | 
+         [0004]   1B  5          | ldai    5                | LOAD A IMMEDIATE                                                 | 
+         [0006]   11             | pusha                    | PUSH A ON TO STACK                                               | 
+         [0007]   1B  3          | ldai    3                | LOAD A IMMEDIATE                                                 | 
+         [0009]   11             | pusha                    | PUSH A ON TO STACK                                               | 
+         [000a]   00             | nop                      | NO OPERATION                                                     | 
+         [000b]   00             | nop                      | NO OPERATION                                                     | 
+         [000c]   00             | nop                      | NO OPERATION                                                     | 
+         [000d]   00             | nop                      | NO OPERATION                                                     | 
+         [000e]   02             | brk                      | BREAK / HALT                                                     | 
+
+End of pass 1
+
+
+// test.asm
+         [000f]   00             | nop                      | NO OPERATION                                                     | 
+ADDRESS = 0001
+         [0001]   00             | nop                      | NO OPERATION                                                     | 
+         [0002]   00             | nop                      | NO OPERATION                                                     | 
+         [0003]   00             | nop                      | NO OPERATION                                                     | 
+         [0004]   1B  5          | ldai    5                | LOAD A IMMEDIATE                                                 | 
+         [0006]   11             | pusha                    | PUSH A ON TO STACK                                               | 
+         [0007]   1B  3          | ldai    3                | LOAD A IMMEDIATE                                                 | 
+         [0009]   11             | pusha                    | PUSH A ON TO STACK                                               | 
+         [000a]   00             | nop                      | NO OPERATION                                                     | 
+         [000b]   00             | nop                      | NO OPERATION                                                     | 
+         [000c]   00             | nop                      | NO OPERATION                                                     | 
+         [000d]   00             | nop                      | NO OPERATION                                                     | 
+         [000e]   02             | brk                      | BREAK / HALT                                                     | 
+
+End of pass 2
+
+
+
+0001    00 00 00 1b 05 11 1b 03         ........
+0009    11 00 00 00 00 02 00 00         ........
+0011    00 00 00 00 00 00 00 00         ........
+
+
+
+Labels:
+
+
+

@@ -1,0 +1,312 @@
+# buildDecoder.rb
+
+require 'erb'
+
+require './lib/customFile.rb'
+require './lib/extendString.rb'
+require './lib/genericFunctions.rb'
+require './lib/extendInt.rb'
+require './lib/csvFile.rb'
+
+#require './decoder.rb'
+
+
+
+$inputFile
+$outputFile
+$debugFile
+$codeFile
+
+
+
+
+
+
+
+
+BEGIN { print "\nINFO: Start of ",$PROGRAM_NAME }
+
+
+    inputFileName = parseArguments
+ 
+    codeFileName = "decoder.rb"
+    
+    $inputFile = CsvFile.new(inputFileName)
+
+    $codeFile = CustomFile.new(codeFileName,"automatically generated ruby")
+
+    $codeFile.create
+   
+    $codeFile.openWrite
+    
+    $codeFile.write("#" + codeFileName)
+
+
+    inputString =  $inputFile.getTopLine
+    
+    inputList = inputString.split(",")
+    
+    
+    instructionCol  = $inputFile.getColumn("instruction")
+    addressModeCol  = $inputFile.getColumn("addressMode")
+    extraFetchesCol = $inputFile.getColumn("extraFetches")
+    indexCol        = $inputFile.getColumn("index")       
+    opCodecol       = $inputFile.getColumn("opCode")      
+    descriptionCol  = $inputFile.getColumn("description")  
+    
+
+    templateA = ERB.new %q{def decode(instructionS)
+   
+    outputList = [ "XX" , "YY" , "ZZ" ,"QQ" ]
+    
+    case instructionS
+    }
+
+    codeString = templateA.result(binding)
+
+    $codeFile.write(codeString)
+    
+    $inputFile.openRead
+    
+    inputString = $inputFile.getString # skip top line
+  
+
+
+    
+    begin
+    
+            
+        inputString = $inputFile.getString
+            
+        
+        if ( inputString != nil )
+            
+            inputString = inputString.strip!
+             
+            inputList = inputString.split(",")
+
+            
+            instruction   =  inputList[  instructionCol  ]
+            addressMode   =  inputList[  addressModeCol  ]
+            extraFetches  =  inputList[  extraFetchesCol ]
+            index         =  inputList[  indexCol        ]
+            opCode        =  inputList[  opCodecol       ]
+            description   =  inputList[  descriptionCol  ]
+            
+
+            code = ( index.to_i & 63 ) | extraFetches.to_i << 6
+
+            stuff = 5 - instruction.size
+            
+            stuffing = ""
+            
+            for i in ( 0 .. stuff )
+                
+                stuffing = stuffing + " "
+                
+            end
+            
+            
+            templateB = ERB.new %q{         when "<%=instruction%>" <%=stuffing%> then hexS = "<%=code.to_hex(2).strip%>" ; extraFetches = "<%=extraFetches%>" ; addressMode = "<%=addressMode%>" ; description = "<%=description.upcase%>" ;}
+
+            codeString = templateB.result(binding)
+
+            $codeFile.write(codeString)
+            
+        end
+
+    end while ( inputString != nil )
+    
+    
+    templateC = ERB.new %q{    
+         else print "\nERROR: instruction ",instructionS," is not identified\n\n" ; Process.exit(0)
+    
+    end # of case
+    
+    outputList[0] = hexS
+    outputList[1] = extraFetches
+    outputList[2] = addressMode
+    outputList[3] = description
+
+    return outputList
+    end    }
+
+    codeString = templateC.result(binding)
+
+    $codeFile.write(codeString)
+    
+    $inputFile.close
+    
+    ###########################################################################################
+    # End of first pass, now generate disassembler
+    ###########################################################################################
+    
+
+    
+    
+     templateA = ERB.new %q{
+     
+     
+def disassemble(instructionList)
+   
+    outputList = [ "aa" , "bb" , "cc" ,"dd" ]
+    
+    opCodeI = 99999;
+    
+    opCodeI = instructionList[0].to_int
+
+    opCode = opCodeI.to_hex(2)
+
+
+    if ( opCode[0] == " " )
+        
+        opCode = opCode[ 1 .. 2 ]
+        
+    end
+ 
+    case opCode
+    }
+
+    codeString = templateA.result(binding)
+
+    $codeFile.write(codeString)
+    
+    $inputFile.openRead
+    
+    inputString = $inputFile.getString # skip top line
+  
+
+
+    
+    begin
+    
+            
+        inputString = $inputFile.getString
+            
+        
+        if ( inputString != nil )
+            
+            inputString = inputString.strip!
+             
+            inputList = inputString.split(",")
+
+            
+            instruction   =  inputList[  instructionCol  ]
+            addressMode   =  inputList[  addressModeCol  ]
+            extraFetches  =  inputList[  extraFetchesCol ]
+            index         =  inputList[  indexCol        ]
+            opCode        =  inputList[  opCodecol       ]
+            description   =  inputList[  descriptionCol  ]
+            
+
+            print "\n",instruction  
+            print " ",addressMode   
+            print " ",extraFetches 
+            print " ",index         
+            print " ",opCode      
+            print " ",description 
+
+
+
+
+
+            code = ( index.to_i & 63 ) | extraFetches.to_i << 6
+            
+            codeS = code.to_hex(2).strip!
+
+            stuff = 4 - codeS.size
+            
+            stuffing = ""
+            
+            for i in ( 0 .. stuff )
+                
+                stuffing = stuffing + " "
+                
+            end
+            
+            
+            stuffA = 10 - instruction.size
+            
+            stuffingA = ""
+            
+            for i in ( 0 .. stuffA )
+                
+                stuffingA = stuffingA + " "
+                
+            end
+            
+            
+            stuffB = 10 - addressMode.size
+            
+            stuffingB = ""
+            
+            for i in ( 0 .. stuffB )
+                
+                stuffingB = stuffingB + " "
+                
+            end
+            
+            
+            
+          #  templateB = ERB.new %q{         when "<%=instruction%>" <%=stuffing%> then hexS = "<%=code.to_hex(2).strip%>" ; extraFetches = "<%=extraFetches%>" ; addressMode = "<%=addressMode%>" <%=stuffingB%> ; description = "<%=description.upcase%>" ;}
+          #
+          #  codeString = templateB.result(binding)
+          #
+          #  $codeFile.write(codeString)
+          
+                
+            templateB = ERB.new %q{         when "<%=codeS%>" <%=stuffing%> then mnemonic = "<%=instruction%>" <%=stuffingA%> ; extraFetches = "<%=extraFetches%>" ; addressMode = "<%=addressMode%>" <%=stuffingB%> ; description = "<%=description.upcase%>" ;}
+          
+            codeString = templateB.result(binding)
+          
+            $codeFile.write(codeString)
+          
+          
+          
+            
+        end
+
+    end while ( inputString != nil )
+    
+    
+    templateC = ERB.new %q{    
+         else print "\nERROR: opCode ",opCode," is not identified\n\n" ; Process.exit(0)
+    
+    end # of case
+    
+    outputList[0] = mnemonic
+    outputList[1] = extraFetches
+    outputList[2] = addressMode
+    outputList[3] = description
+
+    return outputList
+    end    }
+
+    codeString = templateC.result(binding)
+
+    $codeFile.write(codeString)
+    
+    
+    ##########################################################################################
+    # At this point, we have a decode function to give the opcode, fetchCount and description 
+    ##########################################################################################
+
+    
+    
+    
+    
+    
+    
+    
+  
+    $codeFile.close
+    
+    ##########################################################################################
+    # At this point, we have a decode function to give the opcode, fetchCount and description 
+    ##########################################################################################
+
+
+END { print "\n\nINFO: End of ",$PROGRAM_NAME,"\n\n" }
+
+
+

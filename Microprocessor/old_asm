@@ -1,0 +1,136 @@
+// test.asm
+// nop
+// jmp 0040
+// address 0010
+// nop
+// fill 0040 00
+// address 040
+// :zero     nop    
+//  ldai   0F
+//  lda    55AA
+//  ldaix  C0C0
+//  :three    ldaii  D0D0
+//  ldxi   0F
+//  ldx    55AA
+//  ldyi   0F
+//  ldy    55AA
+//  sta    55AA
+//  staix  C0C0
+//  staii  D0D0
+//  stx    55AA
+//  sty    55AA
+// address 0000
+//  nop
+//  jmpa 0010
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  nop
+//  ldai 03
+//  ldxi 05
+//  ldyi 07
+//  sta 0002
+//  stx 0003
+//  sty 0004
+//  inca
+//  incx
+//  incy
+//  deca
+//  decx
+//  decy
+//  deca
+//  decx
+//  decy
+//  lda 0002
+//  ldx 0003
+//  ldy 0004
+//  ldai 55
+//  pusha
+//  ldai aa
+//  pusha
+//  ldai 00
+//  popa
+//  popa
+//  nop
+//  ldxi 55
+//  pushx
+//  ldxi aa
+//  pushx
+//  ldxi 00
+//  popx
+//  popx
+//  nop
+//  ldyi 55
+//  pushy
+//  ldyi aa
+//  pushy
+//  ldyi 00
+//  popy
+//  popy
+//  nop
+//  ldai 00
+//  ldai 7f
+//  ldai 80
+//  ldai 00
+//  nop
+//  ldai 00
+//  pushf
+//  ldai 7f
+//  pushf
+//  ldai 80
+//  pushf
+//  ldai 00
+//  pushf
+//  popf
+//  popf
+//  popf
+//  popf
+//  nop
+//  nop
+//  // pushpc
+//  nop
+//  nop
+//  nop
+//  // poppc
+//  nop
+//  nop
+//  ldai 04
+//  nop
+//  deca
+//  beqz 02
+//  jmpr FC 
+//  nop
+//  nop
+//  ldai 01
+//  tax
+//  ldai 02
+//  tay
+//  ldxi 99
+//  txa
+//  ldyi 88
+//  tya
+//  ldxi 55
+//  txy
+//  ldyi aa
+//  tyx
+nop
+nop
+ldai ff
+and 01
+ldai 55
+or aa
+ldai 55
+nop
+nop
+nop
+brk

@@ -1,0 +1,62 @@
+Instruction,OpCode,Description
+nop     , 00 ,  NO OPERATION    
+rst     , 01 ,  RESET    
+brk     , 02 ,  BREAK / HALT    
+call    ,83,  CALL SUBROUTINE AT ADDRESS    
+ret     , 04 ,  RETURN FROM SUBROUTINE    
+reti    , 05 ,  RETURN FROM INTERRUPT    
+beqz    ,46,  BRANCH IF A == ZERO    
+bneqz   ,47,  BRANCH IF A != ZERO    
+bpos    ,48,  BRANCH IF A IS >= 0    
+bneg    ,49,  BRANCH IF A IS NEGATIVE    
+bxeqz   , 4a ,  BRANCH IF X == 0    
+bxneq   , 4b ,  BRANCH IF X != 0    
+dxsz    , 0c ,  DECREMENT X AND SKIP ON ZERO    
+jmp#    , 4d ,  UNCONDITIONAL RELATIVE JUMP    
+jmp     , 8e ,  UNCONDITIONAL ABSOLUTE JUMP    
+pusha   , 0f ,  PUSH A ON TO STACK    
+pushb   ,10,  PUSH B ON TO STACK    
+pushx   ,11,  PUSH X ON TO STACK    
+pushf   ,12,  PUSH FLAGS ON TO STACK    
+pushpc  ,13,  PUSH PROGRAM COUNTER ON TO STACK    
+popa    ,14,  POP A FROM STACK    
+popb    ,15,  POP B FROM STACK    
+popx      ,16,  POP X FROM STACK    
+popf      ,17,  POP FLAGS FROM STACK    
+poppc     ,18,  POP PROGRAM COUNTER FROM STACK    
+lda#      ,59,  LOAD A IMMEDIATE    
+lda       , 9a ,  LOAD A ABSOLUTE    
+ldaix     , 9b ,  LOAD A ( ADDRESS + X )    
+ldai      , 9c ,  LOAD A INDIRECT    
+ldb#      , 5d ,  LOAD B IMMEDIATE    
+ldb       , 9e ,  LOAD B ABSOLUTE    
+ldbix     , 9f ,  LOAD B ( ADDRESS + X )    
+ldx#      ,60,  LOAD X IMMEDIATE    
+ldx       , a1 ,  LOAD X ABSOLUTE    
+sta       , a2 ,  STORE A ABSOLUTE    
+staix     , a3 ,  STORE A INDEXED    
+staii     , a4 ,  STORE A INDIRECT    
+stb       , a5 ,  STORE B ABSOLUTE    
+stx       , a6 ,  STORE X ABSOLUTE    
+inca      ,27,  INCREMENT A    
+incb      ,28,  INCREMENT B    
+incx      ,29,  INCREMENT X    
+deca      , 2a ,  DECREMENT A    
+decb      , 2b ,  DECREMENT B    
+decx      , 2c ,  DECREMENT X    
+tab       , 2d ,  TRANSFER A TO B    
+tax       , 2e ,  TRANSFER A TO X    
+tba       , 2f ,  TRANSFER B TO A    
+tbx       ,30,  TRANSFER B TO X    
+txa       ,31,  TRANSFER X TO A    
+txb       ,32,  TRANSFER X TO B    
+and       ,33,  A = A AND B    
+or        ,34,  A = A OR B    
+not       ,35,  A = NOT A    
+xor       ,36,  A = A XOR B    
+lsl       ,77,  A = A SHIFT LEFT    
+lsr       ,78,  A = A SHIFT RIGHT    
+add       ,39,  A = A + B    
+sub       , 3a ,  A = A - B    
+in        , 3b ,  A = INPUT PORT    
+out       , 3c ,  OUTPUT PORT = A    

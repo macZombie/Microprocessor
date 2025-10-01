@@ -1,0 +1,62 @@
+instruction,addressMode,extraFetches,index,opCode,description
+nop,0,0,0,0,no operation
+rst,0,0,1,1,reset
+brk,0,0,2,2,break / halt
+call,absolute,2,3,3,call subroutine at address
+ret ,0,0,4,4,return from subroutine
+reti,0,0,5,5,return from interrupt
+beqz,relative,1,6,6,branch if a == zero
+bneqz,relative,1,7,7,branch if a != zero
+bpos,relative,1,8,8,branch if a is >= 0
+bneg,relative,1,9,9,branch if a is negative
+bxeqz,relative,1,10,10,branch if x == 0
+bxneqz,relative,1,11,11,branch if x != 0
+dxsz,0,0,12,12,decrement x and skip next instruction if x == 0
+jmp#,relative,1,13,13,unconditional relative jump
+jmp,absolute,2,14,14,unconditional absolute jump
+pusha,0,0,15,15,push a on to stack
+pushb,0,0,16,16,push b on to stack
+pushx,0,0,17,17,push x on to stack
+pushf,0,0,18,18,push flags on to stack
+pushpc,0,0,19,19,push program counter on to stack
+popa,0,0,20,20,pop a from stack
+popb,0,0,21,21,pop b from stack
+popx,0,0,22,22,pop x from stack
+popf,0,0,23,23,pop flags from stack
+poppc,0,0,24,24,pop program counter from stack
+lda#,immediate,1,25,25,load a immediate
+lda,absolute,2,26,26,load a absolute
+ldaix ,indexed,2,27,27,load a ( address + x )
+ldai ,indirect,2,28,28,load a indirectly from the pointer specified by address
+ldb#,immediate,1,29,29,load b immediate
+ldb,absolute,2,30,30,load b absolute
+ldbix ,indexed,2,31,31,load b ( address + x )
+ldx#,immediate,1,32,32,load x immediate
+ldx,absolute,2,33,33,load x absolute
+sta,absolute,2,34,34,store a absolute
+staix,indexed,2,35,35,store a indexed
+staii,indirect,2,36,36,store a indirect
+stb,absolute,2,37,37,store b absolute
+stx,absolute,2,38,38,store x absolute
+inca,0,0,39,39,increment a
+incb,0,0,40,40,increment b
+incx,0,0,41,41,increment x
+deca,0,0,42,42,decrement a
+decb,0,0,43,43,decrement b
+decx,0,0,44,44,decrement x
+tab,0,0,45,45,transfer a to b
+tax,0,0,46,46,transfer a to x
+tba,0,0,47,47,transfer b to a
+tbx,0,0,48,48,transfer b to x
+txa,0,0,49,49,transfer x to a
+txb,0,0,50,50,transfer x to b
+and,0,0,51,51,a = a and b
+or,0,0,52,52,a = a or b
+not,0,0,53,53,a = not a
+xor,0,0,54,54,a = a xor b
+lsl,immediate,1,55,55,a = a shifted left operand times
+lsr,immediate,1,56,56,a = a shifted right operand times
+add,0,0,57,57,a = a + b
+sub,0,0,58,58,a = a - b
+in,0,0,59,59,a = input Port
+out,0,1,60,60,output Port = a

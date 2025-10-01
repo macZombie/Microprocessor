@@ -1,0 +1,134 @@
+# myProgram.lst
+ADDRESS = 0000
+[0000]    00              nop                              | NO OPERATION                     | 
+[0001]    8e  :p  lo      jmp :plonk                       | UNCONDITIONAL ABSOLUTE JUMP      | 
+[0004]    00              nop                              | NO OPERATION                     | 
+[0005]    00              nop                              | NO OPERATION                     | 
+[0006]    00              nop                              | NO OPERATION                     | 
+[0007]    00              nop                              | NO OPERATION                     | 
+[0008]    00              nop                              | NO OPERATION                     | 
+[0009]    00              nop                              | NO OPERATION                     | 
+[000a]    00              nop                              | NO OPERATION                     | 
+[000b]    59  de          :zonk lda# de                    | LOAD A IMMEDIATE                 | Label: :zonk at address 000b
+[000d]    5d  ad          ldb# ad                          | LOAD B IMMEDIATE                 | 
+[000f]    00              nop                              | NO OPERATION                     | 
+[0010]    00              nop                              | NO OPERATION                     | 
+[0011]    00              nop                              | NO OPERATION                     | 
+[0012]    00              nop                              | NO OPERATION                     | 
+[0013]    00              nop                              | NO OPERATION                     | 
+[0014]    00              nop                              | NO OPERATION                     | 
+[0015]    59  55          :plonk lda# 55                   | LOAD A IMMEDIATE                 | Label: :plonk at address 0015
+[0017]    00              nop                              | NO OPERATION                     | 
+[0018]    00              nop                              | NO OPERATION                     | 
+[0019]    8e  :p  la      jmp :plank                       | UNCONDITIONAL ABSOLUTE JUMP      | 
+[001c]    00              nop                              | NO OPERATION                     | 
+[001d]    00              nop                              | NO OPERATION                     | 
+[001e]    00              nop                              | NO OPERATION                     | 
+[001f]    00              :plank nop                       | NO OPERATION                     | Label: :plank at address 001f
+[0020]    00              nop                              | NO OPERATION                     | 
+[0021]    00              nop                              | NO OPERATION                     | 
+[0022]    59  ff          :zip lda# ff                     | LOAD A IMMEDIATE                 | Label: :zip at address 0022
+[0024]    00              nop                              | NO OPERATION                     | 
+[0025]    00              nop                              | NO OPERATION                     | 
+[0026]    00              nop                              | NO OPERATION                     | 
+[0027]    60  04          ldx# 04                          | LOAD X IMMEDIATE                 | 
+[0029]    0c              dxsz                             | DECREMENT X AND SKIP NEXT INSTRUCTION IF X == 0 | 
+[002a]    4d  FF          jmp# FF                          | UNCONDITIONAL RELATIVE JUMP      | 
+[002c]    00              nop                              | NO OPERATION                     | 
+[002d]    00              nop                              | NO OPERATION                     | 
+[002e]    00              nop                              | NO OPERATION                     | 
+[002f]    00              nop                              | NO OPERATION                     | 
+[0030]    00              nop                              | NO OPERATION                     | 
+[0031]    00              nop                              | NO OPERATION                     | 
+[0032]    00              nop                              | NO OPERATION                     | 
+[0033]    00              nop                              | NO OPERATION                     | 
+[0034]    00              nop                              | NO OPERATION                     | 
+[0035]    00              nop                              | NO OPERATION                     | 
+[0036]    00              nop                              | NO OPERATION                     | 
+[0037]    00              nop                              | NO OPERATION                     | 
+[0038]    00              nop                              | NO OPERATION                     | 
+[0039]    00              nop                              | NO OPERATION                     | 
+[003a]    00              nop                              | NO OPERATION                     | 
+[003b]    00              nop                              | NO OPERATION                     | 
+[003c]    60  06          ldx# 06                          | LOAD X IMMEDIATE                 | 
+[003e]    0c              dxsz                             | DECREMENT X AND SKIP NEXT INSTRUCTION IF X == 0 | 
+[003f]    4d  FF          jmp# FF                          | UNCONDITIONAL RELATIVE JUMP      | 
+[0041]    00              nop                              | NO OPERATION                     | 
+[0042]    00              nop                              | NO OPERATION                     | 
+[0043]    00              nop                              | NO OPERATION                     | 
+[0044]    00              nop                              | NO OPERATION                     | 
+[0045]    00              nop                              | NO OPERATION                     | 
+[0046]    02              brk // the end                   | BREAK / HALT                     | 
+// the very end
+ADDRESS = 0000
+[0000]    00              nop                              | NO OPERATION                     | 
+[0001]    8e  00  15      jmp :plonk                       | UNCONDITIONAL ABSOLUTE JUMP      | 
+[0004]    00              nop                              | NO OPERATION                     | 
+[0005]    00              nop                              | NO OPERATION                     | 
+[0006]    00              nop                              | NO OPERATION                     | 
+[0007]    00              nop                              | NO OPERATION                     | 
+[0008]    00              nop                              | NO OPERATION                     | 
+[0009]    00              nop                              | NO OPERATION                     | 
+[000a]    00              nop                              | NO OPERATION                     | 
+[000b]    59  de          :zonk lda# de                    | LOAD A IMMEDIATE                 | Label: :zonk at address 000b
+[000d]    5d  ad          ldb# ad                          | LOAD B IMMEDIATE                 | 
+[000f]    00              nop                              | NO OPERATION                     | 
+[0010]    00              nop                              | NO OPERATION                     | 
+[0011]    00              nop                              | NO OPERATION                     | 
+[0012]    00              nop                              | NO OPERATION                     | 
+[0013]    00              nop                              | NO OPERATION                     | 
+[0014]    00              nop                              | NO OPERATION                     | 
+[0015]    59  55          :plonk lda# 55                   | LOAD A IMMEDIATE                 | Label: :plonk at address 0015
+[0017]    00              nop                              | NO OPERATION                     | 
+[0018]    00              nop                              | NO OPERATION                     | 
+[0019]    8e  00  1f      jmp :plank                       | UNCONDITIONAL ABSOLUTE JUMP      | 
+[001c]    00              nop                              | NO OPERATION                     | 
+[001d]    00              nop                              | NO OPERATION                     | 
+[001e]    00              nop                              | NO OPERATION                     | 
+[001f]    00              :plank nop                       | NO OPERATION                     | Label: :plank at address 001f
+[0020]    00              nop                              | NO OPERATION                     | 
+[0021]    00              nop                              | NO OPERATION                     | 
+[0022]    59  ff          :zip lda# ff                     | LOAD A IMMEDIATE                 | Label: :zip at address 0022
+[0024]    00              nop                              | NO OPERATION                     | 
+[0025]    00              nop                              | NO OPERATION                     | 
+[0026]    00              nop                              | NO OPERATION                     | 
+[0027]    60  04          ldx# 04                          | LOAD X IMMEDIATE                 | 
+[0029]    0c              dxsz                             | DECREMENT X AND SKIP NEXT INSTRUCTION IF X == 0 | 
+[002a]    4d  FF          jmp# FF                          | UNCONDITIONAL RELATIVE JUMP      | 
+[002c]    00              nop                              | NO OPERATION                     | 
+[002d]    00              nop                              | NO OPERATION                     | 
+[002e]    00              nop                              | NO OPERATION                     | 
+[002f]    00              nop                              | NO OPERATION                     | 
+[0030]    00              nop                              | NO OPERATION                     | 
+[0031]    00              nop                              | NO OPERATION                     | 
+[0032]    00              nop                              | NO OPERATION                     | 
+[0033]    00              nop                              | NO OPERATION                     | 
+[0034]    00              nop                              | NO OPERATION                     | 
+[0035]    00              nop                              | NO OPERATION                     | 
+[0036]    00              nop                              | NO OPERATION                     | 
+[0037]    00              nop                              | NO OPERATION                     | 
+[0038]    00              nop                              | NO OPERATION                     | 
+[0039]    00              nop                              | NO OPERATION                     | 
+[003a]    00              nop                              | NO OPERATION                     | 
+[003b]    00              nop                              | NO OPERATION                     | 
+[003c]    60  06          ldx# 06                          | LOAD X IMMEDIATE                 | 
+[003e]    0c              dxsz                             | DECREMENT X AND SKIP NEXT INSTRUCTION IF X == 0 | 
+[003f]    4d  FF          jmp# FF                          | UNCONDITIONAL RELATIVE JUMP      | 
+[0041]    00              nop                              | NO OPERATION                     | 
+[0042]    00              nop                              | NO OPERATION                     | 
+[0043]    00              nop                              | NO OPERATION                     | 
+[0044]    00              nop                              | NO OPERATION                     | 
+[0045]    00              nop                              | NO OPERATION                     | 
+[0046]    02              brk // the end                   | BREAK / HALT                     | 
+// the very end
+
+0000    00 8e 00 15 00 00 00 00         ........
+0008    00 00 00 59 de 5d ad 00         ...Y.]..
+0010    00 00 00 00 00 59 55 00         .....YU.
+0018    00 8e 00 1f 00 00 00 00         ........
+0020    00 00 59 ff 00 00 00 60         ..Y....`
+0028    04 0c 4d ff 00 00 00 00         ..M.....
+0030    00 00 00 00 00 00 00 00         ........
+0038    00 00 00 00 60 06 0c 4d         ....`..M
+0040    ff 00 00 00 00 00 02 ff         ........
+0048    ff ff ff ff ff ff ff ff         ........
